@@ -206,6 +206,10 @@ class HtmlSource(Source):
         if not data.get("status"):
             return []
         urls = re.findall(r'src="(https://cdn\.manhuaplus\.cc/[^"]+)"', data.get("html", ""))
+        # Sort by data-index to get correct reading order (HTML order is random)
+        indexed = re.findall(r'data-index="(\d+)".*?src="(https://cdn\.manhuaplus\.cc/[^"]+)"', data.get("html", ""), re.DOTALL)
+        if indexed:
+            return [url for _, url in sorted(indexed, key=lambda x: int(x[0]))]
         return list(dict.fromkeys(urls))
 
 
