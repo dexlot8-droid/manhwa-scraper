@@ -130,7 +130,7 @@ async def sync_to_kv(bundle):
     """POST series bundle to worker sync endpoint."""
     payload = {"series": bundle}
     req = urllib.request.Request(
-        f"{WORKER_BASE}/sync",
+        f"{WORKER_BASE}/sync?token=dexmanhwa-sync-2026",
         data=json.dumps(payload).encode(),
         headers={
             "Content-Type": "application/json",
@@ -205,7 +205,7 @@ async def main():
         # Write updated all_series
         payload = {"all_series": {"series": existing_series}}
         req = urllib.request.Request(
-            f"{WORKER_BASE}/sync",
+            f"{WORKER_BASE}/sync?token=dexmanhwa-sync-2026",
             data=json.dumps(payload).encode(),
             headers={
                 "Content-Type": "application/json",
