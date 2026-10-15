@@ -264,7 +264,7 @@ async def main():
             if bundle["slug"]:
                 payload = {"series": bundle}
                 req = urllib.request.Request(
-                    f"{KV_BASE}/sync",
+                    f"{KV_BASE}/sync?token=dexmanhwa-sync-2026",
                     data=json.dumps(payload).encode(),
                     headers={"Content-Type": "application/json", "User-Agent": USER_AGENT},
                     method="POST",
